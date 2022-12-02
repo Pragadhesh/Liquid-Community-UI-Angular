@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        dancingscript: ["dancingscript"]
+        dancingscript: ["dancingscript"],
+        noto: ["noto"]
       }
     },
   },
