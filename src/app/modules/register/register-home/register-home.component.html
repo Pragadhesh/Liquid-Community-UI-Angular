@@ -1,0 +1,196 @@
+<div class="flex flex-col w-full">
+    <div class="flex w-full h-20 bg-gray-50">
+        <div class="flex justify-between w-full h-full">
+            <div class="flex h-full pl-12 items-center text-blue-900 text-3xl font-dancingscript ">
+                Liquid Community
+            </div>
+            <div class="flex pr-5 justify-center h-full w-60 items-center">
+                <button mat-button color="primary" class="flex w-20 text-lg font-noto" [routerLink]="['/']">Home</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="registration_success"  class="flex justify-center pt-40 w-full h-full text-4xl font-dancingscript text-blue-900">
+            Registered Successfully. Please Login to Continue.
+    </div>
+<div class="flex w-full pt-5 justify-center">
+    <form (ngSubmit)="submit()" [formGroup]="studentadmissionform" class="flex flex-col">
+        <div class="flex justify-center text-xl font-medium text-rose-700">
+            Member Information
+        </div>
+        <div class="flex pt-5 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Name
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+                <mat-form-field  class="firstname w-96" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="membername">
+                </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Email
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field class="w-96" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput  [errorStateMatcher]="matcher"
+                       placeholder="Ex.pat@example.com" formControlName="memberemail">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Password
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+                <mat-form-field  class="w-96" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="memberpassword">
+                </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Sport
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field appearance="fill" class="flex  w-96">
+                <mat-label>Sport</mat-label>
+                <mat-select formControlName="membersport">
+                  <mat-option value="Hearthstone">Hearthstone</mat-option>
+                  <mat-option value="CS:GO">CS:GO</mat-option>
+                  <mat-option value="Dota2">Dota2</mat-option>
+                  <mat-option value="Pubg">Pubg</mat-option>
+                  <mat-option value="R6">R6</mat-option>
+                  <mat-option value="Fortnite">Fortnite</mat-option>
+                  <mat-option value="Apex">Apex</mat-option>
+                  <mat-option value="Freefire">Freefire</mat-option>
+                  <mat-option value="Rocketleague">Rocketleague</mat-option>
+                  <mat-option value="Valorant">Valorant</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="flex pt-5 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Discord Link
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+                <mat-form-field  class="w-96" appearance="fill">
+                    <mat-label>Discord link</mat-label>
+                    <input matInput formControlName="memberdiscordlink">
+                </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Country
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field appearance="fill" class="flex  w-96">
+                <mat-label>Country</mat-label>
+                <mat-select  (selectionChange)="onChangeCountry($any($event).value)" formControlName="membercountry">
+                  <mat-option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            State
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field appearance="fill" class="flex  w-96">
+                <mat-label>State</mat-label>
+                <mat-select  (selectionChange)="onChangeState($any($event).value)" formControlName="memberstate">
+                  <mat-option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            City
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field appearance="fill" class="flex  w-96">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="membercity">
+                  <mat-option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Bio
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field class="flex  w-96">
+                <mat-label>Bio</mat-label>
+                <textarea matInput formControlName="memberbio" placeholder="I love to play .."></textarea>
+              </mat-form-field>
+        </div>
+
+        <div class="flex pt-3 flex-row" >
+            <div class="text-lg font-medium text-blue-900">
+            Would you like to be a mentor?
+            </div>
+            <div class="text-lg font-medium text-red-600">
+                *
+            </div>
+        </div>
+        <div class="flex pt-3 flex-row w-full" >
+            <mat-form-field appearance="fill" class="flex  w-96">
+                <mat-select formControlName="membermentor">
+                  <mat-option value="true">Yes</mat-option>
+                  <mat-option value="false">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="flex pt-2 pb-5 justify-center w-full">
+            <button class="flex pt-10" mat-flat-button color="accent" type="submit">Submit Application</button>
+            <div class="flex pl-2">
+                <mat-spinner [diameter]="30"></mat-spinner>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
