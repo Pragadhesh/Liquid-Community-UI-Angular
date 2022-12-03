@@ -1,0 +1,116 @@
+<div class="flex flex-col w-full" *ngIf="!loading">
+    <div class="flex w-full h-20 bg-gray-50">
+        <div class="flex justify-between w-full h-full">
+            <div class="flex h-full pl-12 items-center text-blue-900 text-3xl font-dancingscript ">
+                Liquid Community
+            </div>
+            <div class="flex pr-5 justify-center h-full w-60 items-center">
+                <button mat-button color="primary" class="flex w-20 text-lg font-noto" [routerLink]="['/']">Home</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col w-full h-full">
+        <div class="flex h-24 w-full justify-start pl-12 items-center text-xl text-pink-500 font-noto">
+                Find Members
+        </div>
+        <form (ngSubmit)="submit()" [formGroup]="membersearchform" class=" pl-12 grid grid-cols-5 gap-4 w-full h-full justify-center items-center">
+            <div class="flex flex-col pl-5">
+                <div class="flex flex-row" >
+                    <div class="text-lg font-medium text-blue-900">
+                    Sport
+                    </div>
+                </div>
+                <div class="flex pt-3 flex-row w-full" >
+                    <mat-form-field appearance="fill" class="flex w-96">
+                        <mat-label>Sport</mat-label>
+                        <mat-select formControlName="membersport">
+                          <mat-option value="Hearthstone">Hearthstone</mat-option>
+                          <mat-option value="CS:GO">CS:GO</mat-option>
+                          <mat-option value="Dota2">Dota2</mat-option>
+                          <mat-option value="Pubg">Pubg</mat-option>
+                          <mat-option value="R6">R6</mat-option>
+                          <mat-option value="Fortnite">Fortnite</mat-option>
+                          <mat-option value="Apex">Apex</mat-option>
+                          <mat-option value="Freefire">Freefire</mat-option>
+                          <mat-option value="Rocketleague">Rocketleague</mat-option>
+                          <mat-option value="valorant">valorant</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex flex-col pl-5">
+                <div class="flex flex-row">
+                    <div class="text-lg font-medium text-blue-900">
+                    Country
+                    </div>
+                </div>
+                <div class="flex pt-3 flex-row w-full" >
+                    <mat-form-field appearance="fill" class="flex  w-96">
+                        <mat-label>Country</mat-label>
+                        <mat-select  (selectionChange)="onChangeCountry($any($event).value)" formControlName="membercountry">
+                          <mat-option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex flex-col pl-5">
+                <div class="flex flex-row" >
+                    <div class="text-lg font-medium text-blue-900">
+                    State
+                    </div>
+                </div>
+                <div class="flex pt-3 flex-row w-full" >
+                    <mat-form-field appearance="fill" class="flex  w-96">
+                        <mat-label>State</mat-label>
+                        <mat-select  (selectionChange)="onChangeState($any($event).value)" formControlName="memberstate">
+                          <mat-option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex flex-col pl-5">
+                <div class="flex flex-row" >
+                    <div class="text-lg font-medium text-blue-900">
+                    City
+                    </div>
+                </div>
+                <div class="flex pt-3 flex-row w-full" >
+                    <mat-form-field appearance="fill" class="flex  w-96">
+                        <mat-label>City</mat-label>
+                        <mat-select formControlName="membercity">
+                          <mat-option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex w-96 h-12 pt-3">
+                <button class="flex w-32 h-12 text-lg" mat-flat-button color="accent" type="submit">Find</button>
+            </div>
+        </form>
+        <div *ngIf="search && !memberspresent" class="flex justify-center pt-24 w-full h-full text-4xl font-dancingscript text-blue-900">
+            No Members Found.
+        </div>
+        <div *ngIf="search && memberspresent">
+            <div class="flex pt-5 w-full justify-center pb-5" *ngFor="let member of members; let i=index">
+                <mat-card class="flex w-6/12 pt-3">
+                  <div class="flex flex-col w-full h-full">
+                    <div class="flex flex-row justify-between pl-3">
+                      <mat-label class="flex font-noto text-base text-blue-900">{{member.name}}</mat-label>
+                      <mat-label class="flex font-noto text-pink-500">{{member.sport}}</mat-label>
+                    </div>
+                    <div class="flex flex-row justify-between pl-3 pt-3 font-dancingscript text-blue-900">
+                        {{member.bio}}
+                    </div>
+                    <div class="flex flex-row justify-between pl-3 pt-3">
+                        <mat-label class="flex font-noto text-sm text-pink-500">{{member.discordlink}}</mat-label>
+                        <mat-label class="flex font-noto text-sm text-blue-900">{{member.city}} {{member.state}} {{member.country}}</mat-label>
+                      </div>
+                  </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex w-full h-full justify-center items-center" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
