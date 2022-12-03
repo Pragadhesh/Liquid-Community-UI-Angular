@@ -1,13 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API, BASE_URL } from '../constants/api-constants';
-;
+
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
 
     constructor(private http: HttpClient) { }
+    
+    registerMember(body:any)
+    {
+        return this.http.post(`${BASE_URL}${API.REGISTER}`,body)
+    }
 
     getMembers(sport:any,country:any,state:any,city:any)
     {

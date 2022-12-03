@@ -12,8 +12,8 @@
     <div *ngIf="registration_success"  class="flex justify-center pt-40 w-full h-full text-4xl font-dancingscript text-blue-900">
             Registered Successfully. Please Login to Continue.
     </div>
-<div class="flex w-full pt-5 justify-center">
-    <form (ngSubmit)="submit()" [formGroup]="studentadmissionform" class="flex flex-col">
+<div class="flex w-full pt-5 justify-center" *ngIf="!registration_success">
+    <form (ngSubmit)="submit()" [formGroup]="memberregistrationform" class="flex flex-col">
         <div class="flex justify-center text-xl font-medium text-rose-700">
             Member Information
         </div>
@@ -187,10 +187,10 @@
 
         <div class="flex pt-2 pb-5 justify-center w-full">
             <button class="flex pt-10" mat-flat-button color="accent" type="submit">Submit Application</button>
-            <div class="flex pl-2">
-                <mat-spinner [diameter]="30"></mat-spinner>
-            </div>
         </div>
     </form>
 </div>
+</div>
+<div class="flex w-full h-full justify-center items-center" *ngIf="loading">
+    <mat-spinner></mat-spinner>
 </div>
