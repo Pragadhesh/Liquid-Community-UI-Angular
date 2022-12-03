@@ -11,7 +11,6 @@ export class MemberService {
 
     getMembers(sport:any,country:any,state:any,city:any)
     {
-        console.log("Entered get members");
         if(city)
         {
             return this.http.get(`${BASE_URL}${API.GET_MEMBERS}/${sport}/${country}/${state}/${city}`)
@@ -28,6 +27,27 @@ export class MemberService {
         {
             console.log("ppp")
             return this.http.get(`${BASE_URL}${API.GET_MEMBERS}/${sport}`)
+        }
+    }
+
+    getMentors(sport:any,country:any,state:any,city:any)
+    {
+        if(city)
+        {
+            return this.http.get(`${BASE_URL}${API.GET_MENTORS}/${sport}/${country}/${state}/${city}`)
+        }
+        else if (state)
+        {
+            return this.http.get(`${BASE_URL}${API.GET_MENTORS}/${sport}/${country}/${state}`) 
+        }
+        else if (country)
+        {
+            return this.http.get(`${BASE_URL}${API.GET_MENTORS}/${sport}/${country}`)
+        }
+        else
+        {
+            console.log("ppp")
+            return this.http.get(`${BASE_URL}${API.GET_MENTORS}/${sport}`)
         }
     }
 }

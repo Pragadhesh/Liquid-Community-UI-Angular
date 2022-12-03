@@ -9,6 +9,7 @@ import { MaterialModule } from './material.module';
 import { RegisterModule } from './modules/register/register.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FindpeopleModule } from './modules/findpeople/findpeople.module';
+import { FindmentorsModule } from './modules/findmentors/findmentors.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FindpeopleModule } from './modules/findpeople/findpeople.module';
     HomepageModule,
     RegisterModule,
     FindpeopleModule,
+    FindmentorsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule
