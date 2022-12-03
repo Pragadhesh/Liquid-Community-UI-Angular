@@ -3,6 +3,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CountriesService } from 'src/app/services/countries.service';
 import { MemberService } from 'src/app/services/member.service';
 
+interface Member {
+  id: number;
+  email: string;
+  name: string;
+  sport: string;
+  bio: string;
+  mentor: boolean;
+  discordlink: string;
+  country: string;
+  city: string;
+  state: string;
+}
+
 @Component({
   selector: 'app-findpeople',
   templateUrl: './findpeople.component.html',
@@ -14,9 +27,9 @@ export class FindpeopleComponent implements OnInit {
   countryInfo: any[] = [];
   cityInfo: any[] = [];
   loading = false
-  search = true
-  memberspresent = true
-  members: any;
+  search = false
+  memberspresent = false
+  members: Member[] = []
 
   constructor(private country:CountriesService,
     private member: MemberService
@@ -39,18 +52,29 @@ export class FindpeopleComponent implements OnInit {
   }
 
   getMembers(sport:any,country:any,state:any,city:any) {
-    this.member.getMembers(sport,country,state,city).subscribe(
-      data =>{
-        this.members = data
+    this.search = true
+    this.member.getMembers(sport, country, state, city).subscribe(
+      Response => {
+        this.loading = true
+        let response_data = JSON.parse(JSON.stringify(Response));
+        this.members = response_data;
+        if (this.members.length > 0)
+        {
+          this.memberspresent = true
+        }
+        else
+        {
+          this.memberspresent = false
+        }
+        this.loading = false
       },
-      err => console.log(err),
+      err => console.log(err)
     )
   }
 
   onChangeCountry(countryValue:number) {
     this.stateInfo=this.countryInfo[countryValue].States;
     this.cityInfo=this.stateInfo[0].Cities;
-    console.log(this.stateInfo);
   }
 
   onChangeState(stateValue:number) {
@@ -66,7 +90,7 @@ export class FindpeopleComponent implements OnInit {
     }
   );
 
-  submit() {
+  async submit() {
     if(this.membersearchform.valid)
     {
       const form_details = this.membersearchform.value;
@@ -83,7 +107,7 @@ export class FindpeopleComponent implements OnInit {
       {
         console.log("entered catch")
       }
-      this.getMembers(sport,country,state,city)
+      this.getMembers(sport, country, state, city)
     }
     else
     {

@@ -25,7 +25,6 @@ export class MemberService {
         }
         else
         {
-            console.log("ppp")
             return this.http.get(`${BASE_URL}${API.GET_MEMBERS}/${sport}`)
         }
     }
@@ -46,7 +45,6 @@ export class MemberService {
         }
         else
         {
-            console.log("ppp")
             return this.http.get(`${BASE_URL}${API.GET_MENTORS}/${sport}`)
         }
     }
