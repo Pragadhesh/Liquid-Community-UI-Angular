@@ -34,6 +34,7 @@ export class HomepageComponent implements OnInit {
 
   user: Member | undefined
   user_status = false
+  name = 'liquid-community'
 
   ngOnInit(): void {
     this.user = this.shared.getUser()
@@ -43,11 +44,14 @@ export class HomepageComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<LoginModalComponent, any> | undefined;
 
-  constructor(public matDialog: MatDialog, private shared: SharedService) { }
+  constructor(public matDialog: MatDialog, private shared: SharedService) {}
 
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
+          this.user = this.shared.getUser()
+          this.user_status = this.shared.getLoginStatus()
+          this.name = this.shared.getName()!
           if(args.target.tagName === 'BODY') {
               this.modalDialog?.close()
           }

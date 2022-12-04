@@ -37,6 +37,10 @@ export class SharedService {
         this.login_status = true
     }
 
+    getName() {
+        return this.user?.name;
+    }
+
     getUser()
     {
         return this.user

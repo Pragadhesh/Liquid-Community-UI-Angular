@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MemberService } from 'src/app/services/member.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -10,6 +11,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
+
 
 @Component({
   selector: 'app-login-modal',
@@ -22,7 +24,7 @@ export class LoginModalComponent implements OnInit {
   loginsuccess = false
   search = false
   message: any
-  constructor(private member: MemberService) { }
+  constructor(private member: MemberService,private shared: SharedService) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +36,10 @@ export class LoginModalComponent implements OnInit {
       Response => {
         this.search = true
         let response_data = JSON.parse(JSON.stringify(Response));
-        console.log(response_data)
+        this.shared.setUser(response_data)
+        this.shared.login_status
+        const user = this.shared.getUser()
+        const sp = this.shared.getLoginStatus()
         this.loginsuccess = true
       },
       err => {
