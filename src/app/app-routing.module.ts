@@ -4,6 +4,7 @@ import { FindmentorsComponent } from './modules/findmentors/findmentors/findment
 import { FindpeopleComponent } from './modules/findpeople/findpeople/findpeople.component';
 import { HomepageComponent } from './modules/homepage/homepage/homepage.component';
 import { RegisterHomeComponent } from './modules/register/register-home/register-home.component';
+import { ViewsponsorshipComponent } from './modules/viewsponsorship/viewsponsorship/viewsponsorship.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,12 @@ const routes: Routes = [
   {
     path: 'mentors',
     component: FindmentorsComponent
+  },
+  {
+    path: 'viewsponsorships',
+    component: ViewsponsorshipComponent
   }
+
 ];
 
 @NgModule({

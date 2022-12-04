@@ -10,6 +10,7 @@ import { RegisterModule } from './modules/register/register.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FindpeopleModule } from './modules/findpeople/findpeople.module';
 import { FindmentorsModule } from './modules/findmentors/findmentors.module';
+import { ViewsponsorshipModule } from './modules/viewsponsorship/viewsponsorship.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FindmentorsModule } from './modules/findmentors/findmentors.module';
     RegisterModule,
     FindpeopleModule,
     FindmentorsModule,
+    ViewsponsorshipModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule

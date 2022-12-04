@@ -61,4 +61,17 @@ export class MemberService {
             return this.http.get(`${BASE_URL}${API.GET_MENTORS}/${sport}`)
         }
     }
+
+    getSponsorships(email:any)
+    {
+        return this.http.get(`${BASE_URL}${API.GET_SPONSORSHIPS}/${email}`)
+    }
+
+    applySponsorship(name:any,email:any)
+    {
+        let body = new HttpParams();
+        body = body.set('email', email.toString());
+        body = body.set('name', name.toString());
+        return this.http.post(`${BASE_URL}${API.APPLY_SPONSORSHIP}`,body)
+    }
 }
