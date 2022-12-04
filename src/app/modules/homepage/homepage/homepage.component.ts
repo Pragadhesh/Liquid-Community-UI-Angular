@@ -1,7 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { SharedService } from 'src/app/services/shared.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
+
+interface AdminDetails {
+  id: number,
+  name: string,
+  description: string
+}
+
+interface Member{
+  id: number,
+  email: string,
+  password: string,
+  name: string,
+  sport: string,
+  bio: string,
+  discordlink: string,
+  country: string,
+  state: string,
+  city: string,
+  mentor: boolean,
+  admin: [AdminDetails]
+}
 
 @Component({
   selector: 'app-homepage',
@@ -10,13 +32,20 @@ import { LoginModalComponent } from '../login-modal/login-modal.component';
 })
 export class HomepageComponent implements OnInit {
 
+  user: Member | undefined
+  user_status = false
 
   ngOnInit(): void {
+    this.user = this.shared.getUser()
+    this.user_status = this.shared.getLoginStatus()
   }
 
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<LoginModalComponent, any> | undefined;
-  constructor(public matDialog: MatDialog) { }
+
+  constructor(public matDialog: MatDialog, private shared: SharedService) { }
+
+
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
           if(args.target.tagName === 'BODY') {
@@ -24,6 +53,8 @@ export class HomepageComponent implements OnInit {
           }
       }
   }
+
+  
   openLoginModal() {
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "350px";

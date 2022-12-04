@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MemberService } from 'src/app/services/member.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -17,9 +18,32 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginModalComponent implements OnInit {
 
-  constructor() { }
+  loading = false
+  loginsuccess = false
+  search = false
+  message: any
+  constructor(private member: MemberService) { }
 
   ngOnInit(): void {
+  }
+
+  loginUser(email:any,password:any)
+  {
+    this.member.loginMember(email,password)
+    .subscribe(
+      Response => {
+        this.search = true
+        let response_data = JSON.parse(JSON.stringify(Response));
+        console.log(response_data)
+        this.loginsuccess = true
+      },
+      err => {
+        this.search = true
+        this.loginsuccess = false
+        let response_data = JSON.parse(JSON.stringify(err));
+        this.message = response_data["error"]
+      }
+    );
   }
 
   loginform = new FormGroup(
@@ -35,7 +59,12 @@ export class LoginModalComponent implements OnInit {
   loginSubmit() {
     if(this.loginform.valid)
     {
-      console.log("Valid Form")
+      const form_details = this.loginform.value;
+      this.loading = true
+      let email = form_details["memberemail"]
+      let password = form_details["memberpassword"]
+      this.loginUser(email,password)
+      this.loading = false
     }
     else
     {

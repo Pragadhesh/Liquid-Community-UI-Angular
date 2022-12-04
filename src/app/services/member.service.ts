@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API, BASE_URL } from '../constants/api-constants';
 
@@ -12,6 +12,14 @@ export class MemberService {
     registerMember(body:any)
     {
         return this.http.post(`${BASE_URL}${API.REGISTER}`,body)
+    }
+
+    loginMember(email:any,password:any)
+    {
+        let body = new HttpParams();
+        body = body.set('email', email.toString());
+        body = body.set('password', password.toString());
+        return this.http.post(`${BASE_URL}${API.LOGIN}`,body)
     }
 
     getMembers(sport:any,country:any,state:any,city:any)
