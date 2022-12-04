@@ -79,4 +79,13 @@ export class MemberService {
     {
         return this.http.get(`${BASE_URL}${API.GET_APPLICANTS}/${name}`)
     }
+
+    createSponsorship(body:any,email:any)
+    {
+        let qparams = new HttpParams();
+        qparams = qparams.set('email', email.toString());
+        return this.http.post(`${BASE_URL}${API.CREATE_SPONSORSHIP}`,body,
+        {params:qparams});
+
+    }
 }

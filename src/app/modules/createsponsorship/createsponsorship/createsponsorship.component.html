@@ -1,0 +1,56 @@
+<div class="flex flex-col w-full">
+    <div class="flex w-full h-20 bg-gray-50">
+        <div class="flex justify-between w-full h-full">
+            <div class="flex h-full pl-12 items-center text-blue-900 text-3xl font-dancingscript ">
+                Liquid Community
+            </div>
+            <div class="flex pr-5 justify-center h-full w-60 items-center">
+                <button mat-button color="primary" class="flex w-20 text-lg font-noto" [routerLink]="['/']">Home</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!user_status && !isLoading"  class="flex justify-center pt-40 w-full h-full text-4xl font-dancingscript text-blue-900">
+       Please Login to create new sponsorship
+    </div>
+    <div *ngIf="user_status && creation_success"  class="flex justify-center pt-40 w-full h-full text-4xl font-dancingscript text-blue-900">
+        Sponsorship created successfully
+    </div>
+    <div class="flex w-full pt-5 justify-center" *ngIf="!creation_success && user_status">
+        <form (ngSubmit)="submit()" [formGroup]="sponsorshipregistrationform" class="flex flex-col">
+            <div class="flex justify-center text-xl font-medium text-rose-700">
+                Member Information
+            </div>
+            <div class="flex pt-5 flex-row" >
+                <div class="text-lg font-medium text-blue-900">
+                Name
+                </div>
+                <div class="text-lg font-medium text-red-600">
+                    *
+                </div>
+            </div>
+            <div class="flex pt-3 flex-row w-full" >
+                    <mat-form-field  class="firstname w-96" appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="sponsorshipname">
+                    </mat-form-field>
+            </div>
+            <div class="flex pt-3 flex-row" >
+                <div class="text-lg font-medium text-blue-900">
+                Description
+                </div>
+                <div class="text-lg font-medium text-red-600">
+                    *
+                </div>
+            </div>
+            <div class="flex pt-3 flex-row w-full" >
+                <mat-form-field class="flex  w-96">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="sponsorshipdescription" placeholder="This sponsorship is for .."></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="flex pt-2 pb-5 justify-center w-full">
+                <button class="flex pt-10" mat-flat-button color="accent" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
