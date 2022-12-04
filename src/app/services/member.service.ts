@@ -74,4 +74,9 @@ export class MemberService {
         body = body.set('name', name.toString());
         return this.http.post(`${BASE_URL}${API.APPLY_SPONSORSHIP}`,body)
     }
+
+    getApplicants(name:any)
+    {
+        return this.http.get(`${BASE_URL}${API.GET_APPLICANTS}/${name}`)
+    }
 }

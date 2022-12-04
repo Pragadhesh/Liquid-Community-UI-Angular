@@ -1,0 +1,71 @@
+<div class="flex flex-col w-full">
+    <div class="flex w-full h-20 bg-gray-50">
+        <div class="flex justify-between w-full h-full">
+            <div class="flex h-full pl-12 items-center text-blue-900 text-3xl font-dancingscript ">
+                Liquid Community
+            </div>
+            <div class="flex pr-5 justify-center h-full w-60 items-center">
+                <button *ngIf="!applicants_view_status" mat-button color="primary" class="flex w-20 text-lg font-noto" [routerLink]="['/']">Home</button>
+                <button *ngIf="applicants_view_status" mat-button color="primary" class="flex w-20 text-lg font-noto" (click)="viewSponsorshipDetails()">Back</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!user_status && !isLoading"  class="flex justify-center pt-40 w-full h-full text-4xl font-dancingscript text-blue-900">
+       Please Login to view all Sponsorships
+    </div>
+    <div class="flex flex-col w-full h-full" *ngIf="user_status" >
+        <div class="flex flex-col w-full p-5" *ngIf="!isLoading && !applicants_view_status">
+            <div class="flex h-16 w-full justify-start pl-12 items-center text-xl text-pink-500 font-noto">
+                My Sponsorships    
+            </div>
+        <div class="flex flex-col w-full items-center" *ngIf="!isLoading && member_details.length > 0">
+        <div class="flex w-8/12 pt-3" *ngFor="let info of member_details; let i=index">
+          <mat-card class="flex w-full">
+            <div class="flex flex-row justify-between">
+              <div class="flex flex-col pl-3">
+                <div class="flex flex-row w-full">
+                  <mat-label class="flex text-lg font-noto text-blue-900">{{info.name}}</mat-label>
+                </div>
+                <div class="flex flex-row w-full font-medium text-blue-300 pt-5">
+                  <mat-label class="flex text-base">{{info.description}}</mat-label>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-4 items-center">
+                <button  mat-flat-button color="primary" class="flex h-11" (click)="viewSponsorshipApplicants(info.name)">View Details</button>
+            </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    
+    <div class="flex flex-col w-full" *ngIf="!isLoading && applicants_view_status">
+        <div class="flex h-24 w-full justify-start pl-12 items-center text-xl text-pink-500 font-noto">
+           Applicants of {{sponsorship_name}}
+        </div>
+        <div>
+            <div class="flex pt-5 w-full justify-center pb-5" *ngFor="let applicant of applicants; let i=index">
+                <mat-card class="flex w-6/12 pt-3">
+                  <div class="flex flex-col w-full h-full">
+                    <div class="flex flex-row justify-between pl-3">
+                      <mat-label class="flex font-noto text-base text-blue-900">{{applicant.name}}</mat-label>
+                      <mat-label class="flex font-noto text-pink-500">{{applicant.sport}}</mat-label>
+                    </div>
+                    <div class="flex flex-row justify-between pl-3 pt-3 font-dancingscript text-blue-900">
+                        {{applicant.bio}}
+                    </div>
+                    <div class="flex flex-row justify-between pl-3 pt-3">
+                        <mat-label class="flex font-noto text-sm text-pink-500">{{applicant.discordlink}}</mat-label>
+                        <mat-label class="flex font-noto text-sm text-blue-900">{{applicant.city}} {{applicant.state}} {{applicant.country}}</mat-label>
+                      </div>
+                  </div>
+                </mat-card>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="flex w-full h-full justify-center pt-40 items-center" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+</div>

@@ -5,5 +5,6 @@ export const API = {
     REGISTER: '/register',
     LOGIN: '/login',
     GET_SPONSORSHIPS: '/sponsorships/applicant',
-    APPLY_SPONSORSHIP: '/apply'
+    APPLY_SPONSORSHIP: '/apply',
+    GET_APPLICANTS: '/sponsorships'
 }

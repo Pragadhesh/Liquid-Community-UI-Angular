@@ -48,64 +48,8 @@ export class ViewsponsorshipComponent implements OnInit {
 
   constructor(private shared: SharedService, private member: MemberService) { }
 
-
-
-  /*members = [
-    {
-        "name": " indian sponsorship",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": false,
-        "applied_status": false
-    },
-    {
-        "name": " indian sponsorship",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": false,
-        "applied_status": false
-    },
-    {
-        "name": " indian sponsorship new",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": false,
-        "applied_status": false
-    },
-    {
-        "name": " indian sponsorship new",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": false,
-        "applied_status": false
-    },
-    {
-        "name": "indian sponsorship new",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": true,
-        "applied_status": false
-    },
-    {
-        "name": "indian sponsorship new",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": true,
-        "applied_status": false
-    },
-    {
-        "name": "indian sponsorship new",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": true,
-        "applied_status": false
-    },
-    {
-        "name": "pragadhesh sponsorship",
-        "description": "This sponsorship is for gamers who are living in Ukraine",
-        "admin_status": false,
-        "applied_status": true
-    }
-  ]*/
-
-
   members: Sponsorship[] = []
   member_details: Sponsorship[] = []
-
-
 
   ngOnInit(): void {
     this.user = this.shared.getUser()
