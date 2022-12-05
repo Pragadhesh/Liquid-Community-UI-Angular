@@ -88,4 +88,9 @@ export class MemberService {
         {params:qparams});
 
     }
+
+    viewEvents()
+    {
+        return this.http.get(`${BASE_URL}${API.GET_EVENTS}`)
+    }
 }

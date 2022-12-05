@@ -1,0 +1,30 @@
+<div class="flex flex-col w-full">
+    <div class="flex w-full h-20 bg-gray-50">
+        <div class="flex justify-between w-full h-full">
+            <div class="flex h-full pl-12 items-center text-blue-900 text-3xl font-dancingscript ">
+                Liquid Community
+            </div>
+            <div class="flex pr-5 justify-center h-full w-60 items-center">
+                <button mat-button color="primary" class="flex w-20 text-lg font-noto" [routerLink]="['/']">Home</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col w-full h-full">
+            <div class="flex h-16 w-full justify-start pl-12 items-center text-xl text-pink-500 font-noto">
+                Latest Events
+            </div>
+            <div class="flex pt-5 w-full justify-center pb-5" *ngFor="let event of events; let i=index">
+                <mat-card class="flex w-6/12 pt-3">
+                  <div class="flex flex-col w-full h-full">
+                    <div class="flex flex-row justify-between pl-3">
+                      <mat-label class="flex font-noto text-base text-blue-900">{{event.name}}</mat-label>
+                      <mat-label class="flex font-noto text-pink-500">{{event.time}}</mat-label>
+                    </div>
+                    <div class="flex flex-row justify-between pl-3 pt-3 font-dancingscript text-blue-900">
+                        {{event.description}}
+                    </div>
+                  </div>
+                </mat-card>
+            </div>
+
+</div>

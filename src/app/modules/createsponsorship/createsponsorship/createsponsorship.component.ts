@@ -74,7 +74,6 @@ export class CreatesponsorshipComponent implements OnInit {
         this.member.createSponsorship(body,email)
         .subscribe(
           Response => {
-            let response_data = JSON.parse(JSON.stringify(Response));
             this.creation_success = true
           },
           err => {

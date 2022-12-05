@@ -7,5 +7,6 @@ export const API = {
     GET_SPONSORSHIPS: '/sponsorships/applicant',
     APPLY_SPONSORSHIP: '/apply',
     GET_APPLICANTS: '/sponsorships',
-    CREATE_SPONSORSHIP: '/sponsorships'
+    CREATE_SPONSORSHIP: '/sponsorships',
+    GET_EVENTS: '/events'
 }

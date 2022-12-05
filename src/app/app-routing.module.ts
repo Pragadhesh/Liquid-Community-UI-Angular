@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatesponsorshipComponent } from './modules/createsponsorship/createsponsorship/createsponsorship.component';
+import { EventhomeComponent } from './modules/events/eventhome/eventhome.component';
 import { FindmentorsComponent } from './modules/findmentors/findmentors/findmentors.component';
 import { FindpeopleComponent } from './modules/findpeople/findpeople/findpeople.component';
 import { HomepageComponent } from './modules/homepage/homepage/homepage.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'createsponsorship',
     component: CreatesponsorshipComponent
+  },
+  {
+    path: 'events',
+    component: EventhomeComponent
   }
 ];
 

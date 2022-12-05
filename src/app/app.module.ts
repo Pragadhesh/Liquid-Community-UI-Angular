@@ -13,6 +13,7 @@ import { FindmentorsModule } from './modules/findmentors/findmentors.module';
 import { ViewsponsorshipModule } from './modules/viewsponsorship/viewsponsorship.module';
 import { SponsorshipadminModule } from './modules/sponsorshipadmin/sponsorshipadmin.module';
 import { CreatesponsorshipModule } from './modules/createsponsorship/createsponsorship.module';
+import { EventsModule } from './modules/events/events.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreatesponsorshipModule } from './modules/createsponsorship/createspons
     ViewsponsorshipModule,
     SponsorshipadminModule,
     CreatesponsorshipModule,
+    EventsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule
